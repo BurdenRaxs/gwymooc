@@ -6,8 +6,8 @@ export default {
   userDelete: host + '/userDelete',
   userAdd: host + '/userAdd',
   carouselList : host + '/carouselList',
-  hotList : host + '/hotList',
+  hotCourse : host + '/hotCourse',
+  newCourse : host + '/newCourse',
   courseList : host + '/courseList',
-  coursePage : host + '/coursePage',
-  courseSort : host + '/courseSort'
+  coursePage : host + '/coursePage'
 }

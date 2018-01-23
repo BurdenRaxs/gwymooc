@@ -4,12 +4,32 @@
       <h3>推 荐 课 程</h3>
     </div>
     <el-row :gutter="20" type="flex" justify="center">
-      <el-col :span="3" v-for="item in 5">
-        <div class="hotimg" :style="{backgroundImage:`url(${hotdata[item-1].imgurl})`}"></div>
-        <div class="content">
-          <h3>{{ hotdata[item-1].coursename }}</h3>
-          <div class="price">{{ hotdata[item-1].price }}</div>
+      <el-col :span="3" v-for="item in items">
+
+        <div @click="linkto(hotdata[item-1].courseid)">
+          <div class="hotimg" :style="{backgroundImage:`url(${hotdata[item-1].imgurl})`}"></div>
+          <div class="content">
+            <h3>{{ hotdata[item-1].coursename }}</h3>
+            <div class="price">{{ hotdata[item-1].price }}元</div>
+          </div>
         </div>
+
+      </el-col>
+    </el-row>
+    <div class="title">
+      <h3>新 上 好 课</h3>
+    </div>
+    <el-row :gutter="20" type="flex" justify="center">
+      <el-col :span="3" v-for="item in 5">
+
+        <div @click="linkto(newdata[item-1].courseid)">
+          <div class="hotimg" :style="{backgroundImage:`url(${newdata[item-1].imgurl})`}"></div>
+          <div class="content">
+            <h3>{{ newdata[item-1].coursename }}</h3>
+            <div class="price">{{ newdata[item-1].price }}元</div>
+          </div>
+        </div>
+
       </el-col>
     </el-row>
   </div>
@@ -23,20 +43,29 @@
   import api from './../public/api.js'
   import func from './../public/fuc.js'
   import axios from 'axios'
+  import router from 'vue-router'
 
   export default {
 
     data(){
       return{
-        hotdata:[]
+        hotdata:[],
+        newdata:[],
+        items:[1,2,3,4,5]
       }
     },
     methods:{
 
       init(){
-        func.ajaxGet(api.hotList + '?' +Date.now(), res => {
+        func.ajaxGet(api.hotCourse + '?' +Date.now(), res => {
           this.hotdata = res.data.hots;
         });
+        func.ajaxGet(api.newCourse + '?' +Date.now(), res => {
+          this.newdata = res.data.news;
+        });
+      },
+      linkto(id){
+        this.$router.push({name:'Course',params:{id:id}})
       }
     },
     mounted(){

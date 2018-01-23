@@ -6,7 +6,8 @@
     <div class="sort">
       <el-row :gutter="10">
         <el-col :push="16" :span="5">
-          <el-select v-model="value" placeholder="请选择" @change="sortby">
+          {{ this.value}}
+          <el-select v-model="value" placeholder="请选择" @change="handleCurrentChange(1)">
             <el-option
               v-for="item in options"
               :key="item.value"
@@ -36,7 +37,7 @@
             :current-page.sync="currentPage1"
             :page-size="25"
             layout="total, prev, pager, next"
-            :total="courselength.length">
+            :total="courselength">
           </el-pagination>
         </el-col>
       </el-row>
@@ -62,7 +63,7 @@
         coursedata:[],
         courselength:[],
         currentPage1: '1',
-        value:'',
+        value:'1',
         options: [{
           value: '1',
           label: '全部'
@@ -83,29 +84,31 @@
     },
     methods:{
 
-      init(){
-        func.ajaxGet(api.courseList + '?' +Date.now(), res => {
-          this.courselength = res.data.course;
-        });
-      },
+//      init(){
+//        func.ajaxGet(api.courseList + '?' +Date.now(), res => {
+//          this.courselength = res.data.course;
+//        });
+//      },
       handleCurrentChange(val) {
-        func.ajaxPost(api.coursePage, { pageid: val } , res => {
+        func.ajaxPost(api.coursePage, { pageid: val ,type: this.value } , res => {
           if (res.data.code === 200) {
             this.coursedata = res.data.course;
+            this.courselength = res.data.len;
           }
         });
       },
-      sortby(){
-        console.log(this.value);
-        func.ajaxPost(api.courseSort, { type: this.value } , res => {
-          if (res.data.code === 200) {
-            this.coursedata = res.data.course;
-          }
-        });
-      }
+//      sortby(){
+//
+//        func.ajaxPost(api.courseSort, { type: this.value } , res => {
+//          if (res.data.code === 200) {
+//            this.coursedata = res.data.course;
+//            this.courselength = res.data.len;
+//          }
+//        });
+//      }
     },
     mounted(){
-      this.init();
+//      this.init();
       this.handleCurrentChange(1);
     }
   }
