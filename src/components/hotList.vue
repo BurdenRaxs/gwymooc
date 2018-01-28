@@ -4,7 +4,7 @@
       <h3>推 荐 课 程</h3>
     </div>
     <el-row :gutter="20" type="flex" justify="center">
-      <el-col :span="3" v-for="item in items">
+      <el-col :span="3" v-for="item in 5">
 
         <div @click="linkto(hotdata[item-1].courseid)">
           <div class="hotimg" :style="{backgroundImage:`url(${hotdata[item-1].imgurl})`}"></div>
@@ -50,8 +50,7 @@
     data(){
       return{
         hotdata:[],
-        newdata:[],
-        items:[1,2,3,4,5]
+        newdata:[]
       }
     },
     methods:{

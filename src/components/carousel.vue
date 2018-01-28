@@ -1,7 +1,7 @@
 <template>
   <el-carousel class="carsouel" height="400px">
     <el-carousel-item v-for="item in 4" :key="item">
-      <img :src="slides[item-1].imgurl">
+      <img :src="slides[item-1].slideimg" @click="linkto(slides[item-1].courseid)">
     </el-carousel-item>
   </el-carousel>
 </template>
@@ -24,6 +24,9 @@
         func.ajaxGet(api.carouselList+ '?' +Date.now(), res => {
           this.slides = res.data.slides;
         });
+      },
+      linkto(id){
+        this.$router.push({name:'Course',params:{id:id}})
       }
     }
   }

@@ -6,7 +6,6 @@
     <div class="sort">
       <el-row :gutter="10">
         <el-col :push="16" :span="5">
-          {{ this.value}}
           <el-select v-model="value" placeholder="请选择" @change="handleCurrentChange(1)">
             <el-option
               v-for="item in options"
@@ -21,11 +20,14 @@
     <div class="body">
       <el-row :gutter="20" type="flex" justify="start" v-for="index in (Math.ceil(coursedata.length / 5))">
         <el-col :push="4" :span="3" v-for="cl in (coursedata.slice((index - 1) * 5, (index - 1) * 5 + 5))">
-          <div class="hotimg" :style="{backgroundImage:`url('${cl.imgurl}')`}"></div>
-          <div class="content">
-            <h3>{{ cl.coursename}}</h3>
-            <div class="price">{{ cl.price }}</div>
+          <div @click="linkto(cl.courseid)">
+            <div class="hotimg" :style="{backgroundImage:`url('${cl.imgurl}')`}"></div>
+            <div class="content">
+              <h3>{{ cl.coursename}}</h3>
+              <div class="price">{{ cl.price }}元</div>
+            </div>
           </div>
+
         </el-col>
       </el-row>
     </div>
@@ -97,15 +99,9 @@
           }
         });
       },
-//      sortby(){
-//
-//        func.ajaxPost(api.courseSort, { type: this.value } , res => {
-//          if (res.data.code === 200) {
-//            this.coursedata = res.data.course;
-//            this.courselength = res.data.len;
-//          }
-//        });
-//      }
+      linkto(id){
+        this.$router.push({name:'Course',params:{id:id}})
+      }
     },
     mounted(){
 //      this.init();

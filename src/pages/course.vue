@@ -1,17 +1,76 @@
 <template>
 
   <div>
-    {{ this.$route.params.id }}
+    <div class="border">
+      <div class="title">
+        <span>{{ coursedata[0].coursename }}</span>
+      </div>
+      <div class="descr">
+        <span>{{ coursedata[0].describe }}</span>
+      </div>
+      <div class="price">
+        <span>价格：{{ coursedata[0].price }}元</span>
+      </div>
+      <div class="buy">
+        <el-button type="danger">加入购物车</el-button>
+      </div>
+    </div>
+
+    <div class="tabs">
+      <el-menu :default-active="activeIndex" class="pagetab" mode="horizontal" @select="handleSelect">
+        <el-menu-item index="1" class="taba">课程评价</el-menu-item>
+        <el-menu-item index="2" class="taba">课程咨询</el-menu-item>
+      </el-menu>
+    </div>
+    <div class="tabs">
+      <component v-bind:is="currentView">
+
+      </component>
+    </div>
+
   </div>
 
 </template>
 
 
 <script>
-  import shoplist from './../components/shopList.vue'
+
+  import api from './../public/api.js'
+  import func from './../public/fuc.js'
+  import consult from './../components/consult.vue'
+  import evaluation from './../components/evaluation.vue'
+
+
   export default {
     components:{
-      shoplist
+      consult,
+      evaluation
+    },
+    data(){
+      return {
+        coursedata:[],
+        activeIndex: '1',
+        currentView:'evaluation'
+      }
+    },
+    methods:{
+      init(){
+        func.ajaxPost(api.courseDetail, { courseid: this.$route.params.id } , res => {
+          if (res.data.code === 200) {
+            this.coursedata = res.data.course;
+          }
+        });
+      },
+      handleSelect(key){
+        if(key == 1){
+          this.currentView = 'evaluation'
+        }else {
+          this.currentView = 'consult'
+        }
+      }
+    },
+    mounted(){
+      this.init();
     }
 
   }
@@ -21,5 +80,57 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
+    .border{
+      margin: 0 auto;
+      width: 1024px;
+      height: 520px;
+      background-image: url("/static/bcg001.jpg");
+    }
+    .title{
+      padding-top: 150px;
+      text-align: center;
+
+    }
+    .title span{
+      font-size: 32px;
+      color: #fff;
+      text-align: center;
+    }
+    .descr{
+      padding-top: 35px;
+      text-align: center;
+      width: 400px;
+      margin: 0 auto;
+    }
+    .descr span{
+      font-size: 18px;
+      color: #fff;
+      text-align: center;
+    }
+    .price{
+      padding-top: 20px;
+      text-align: center;
+    }
+    .price span{
+      font-size: 18px;
+      color: red;
+      text-align: center;
+    }
+    .buy{
+      text-align: center;
+      padding-top: 20px;
+    }
+
+    .tabs{
+      margin: 0 auto;
+      width: 1024px;
+    }
+    .pagetab {
+      display: flex;
+      justify-content: center;
+    }
+    .taba{
+      padding: 0px 100px;
+    }
 
 </style>
