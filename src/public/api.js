@@ -11,6 +11,10 @@ export default {
   newCourse : host + '/newCourse',
   courseDetail : host + '/courseDetail',
   coursePage : host + '/coursePage',
-  register : host + '/register'
+  register : host + '/register',
+  login : host + '/login',
+  addCart : host + '/addcart',
+  getCart : host + '/getcart',
+  delCart : host + '/delcart',
 
 }

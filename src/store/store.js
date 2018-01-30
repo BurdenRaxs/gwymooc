@@ -7,15 +7,21 @@ const store = new Vuex.Store({
   // 定义状态
   state: {
     userid: '',
-    username: 'sdsd',
-    logstate: true
+    username: '',
+    logstate: true,
 
   },
   mutations:{
-    idstate(state,name){
+    idstate(state,stark){
 
-      state.username = name;
+      state.username = stark.username;
+      state.userid = stark.userid;
       state.logstate = false;
+    },
+    logout(state){
+      state.username = '';
+      state.userid = '';
+      state.logstate = true;
     }
   }
 })

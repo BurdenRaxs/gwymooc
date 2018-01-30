@@ -38,8 +38,8 @@
       </el-form-item>
 
     </el-form>
-    <div>{{ user }}</div>
-    <div>{{ this.loginForm.name }}</div>
+
+
   </div>
 </template>
 
@@ -110,8 +110,8 @@
                   type: 'success'
                 });
                 this.loading = false;
-//                this.$router.push('/');
-                this.$store.commit('idstate',this.loginForm.username)
+                this.$router.push('/');
+                this.$store.commit('idstate',{username:this.loginForm.username,userid:this.loginForm.userid})
               }
               if (res.data.code === 500) {
                 this.$message.error('账号重复');
@@ -125,12 +125,6 @@
             return false
           }
         })
-      }
-    },
-    computed: {
-      user () {
-
-        return this.$store.state.username
       }
     }
   }

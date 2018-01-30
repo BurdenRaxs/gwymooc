@@ -86,11 +86,6 @@
     },
     methods:{
 
-//      init(){
-//        func.ajaxGet(api.courseList + '?' +Date.now(), res => {
-//          this.courselength = res.data.course;
-//        });
-//      },
       handleCurrentChange(val) {
         func.ajaxPost(api.coursePage, { pageid: val ,type: this.value } , res => {
           if (res.data.code === 200) {
@@ -104,7 +99,7 @@
       }
     },
     mounted(){
-//      this.init();
+
       this.handleCurrentChange(1);
     }
   }

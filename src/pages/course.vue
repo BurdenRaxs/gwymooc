@@ -12,12 +12,14 @@
         <span>价格：{{ coursedata[0].price }}元</span>
       </div>
       <div class="buy">
-        <el-button type="danger">加入购物车</el-button>
+        <el-button type="danger" @click="addcart" >加入购物车</el-button>
       </div>
     </div>
 
     <div class="tabs">
-      <el-menu :default-active="activeIndex" class="pagetab" mode="horizontal" @select="handleSelect">
+      <el-menu :default-active="activeIndex" class="pagetab"
+               mode="horizontal"
+               @select="handleSelect">
         <el-menu-item index="1" class="taba">课程评价</el-menu-item>
         <el-menu-item index="2" class="taba">课程咨询</el-menu-item>
       </el-menu>
@@ -67,10 +69,36 @@
         }else {
           this.currentView = 'consult'
         }
+      },
+      addcart(){
+        if(this.$store.state.logstate == true) {
+          this.$message({
+            showClose: true,
+            message: '请登录',
+            type: 'warning'
+          });
+          this.$router.push('/login');
+        }else {
+          func.ajaxPost(api.addCart, {
+            userid: this.$store.state.userid ,
+            courseid: this.$route.params.id } , res => {
+            if (res.data.code === 200) {
+              this.$message.success('添加购物车成功');
+            }
+            if (res.data.code === 503) {
+              this.$message.error('购物车已有该课程');
+            }
+          });
+        }
       }
     },
     mounted(){
       this.init();
+    },
+    computed: {
+      logstate (){
+        return this.$store.state.logstate
+      }
     }
 
   }

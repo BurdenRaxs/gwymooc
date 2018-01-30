@@ -7,13 +7,24 @@
       <el-menu-item index="3">公务员问</el-menu-item>
       <el-menu-item index="4" class="login" v-if="logstate" >登录</el-menu-item>
       <el-menu-item index="5" class="login" v-if="logstate" >注册</el-menu-item>
-      <el-menu-item index="6" class="login" v-if="!logstate" >{{ user }}</el-menu-item>
-      <el-menu-item index="7" class="login" v-if="!logstate" >购物车</el-menu-item>
+      <el-submenu index="6" class="login" v-if="!logstate">
+        <template slot="title">{{ user }}</template>
+        <el-menu-item index="6">用户中心</el-menu-item>
+        <el-menu-item index="7">登出</el-menu-item>
+      </el-submenu>
+
+      <el-menu-item index="8" class="login" v-if="!logstate" >
+
+          <div class="shopicon"></div>
+      </el-menu-item>
+
+
     </el-menu>
 </template>
 
 <script>
-
+  import api from './../public/api.js'
+  import func from './../public/fuc.js'
 
   export default {
       data(){
@@ -27,11 +38,15 @@
           if(key == 2) this.$router.push('/shop');
           if(key == 4) this.$router.push('/login');
           if(key == 5) this.$router.push('/register');
+          if(key == 6) this.$router.push('/usercenter');
+          if(key == 7) this.$store.commit('logout')
+          if(key == 8) this.$router.push('/shopcart');
+
         }
       },
       computed: {
         user () {
-          return this.$store.state.name
+          return this.$store.state.username
         },
         logstate (){
           return this.$store.state.logstate
@@ -53,6 +68,11 @@
     background: url("./../assets/mooclogo.png") no-repeat center;
     height: 60px;
     width: 150px;
+  }
+  .shopicon{
+    background: url("/static/shopcarticon.png") no-repeat center;
+    height: 60px;
+    width: 71px;
   }
 
 </style>
