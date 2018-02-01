@@ -19,21 +19,21 @@
       </el-row>
       <el-row :gutter="20" type="flex" justify="space-around" class="name row">
         <el-col  :span="3" class="box">
-            <div  class="img img1"></div>
-            <div class="na">个人资料</div>
+            <div  class="img img1" @click="info"></div>
+            <div class="na">个人课程</div>
         </el-col>
         <el-col  :span="3" class="box">
-            <div  class="img img2"></div>
-            <div class="na">修改资料</div>
+            <div  class="img img2" @click="chginfo"></div>
+            <div class="na">修改密码</div>
         </el-col>
       </el-row>
       <el-row :gutter="20" type="flex" justify="space-around" class="name row">
         <el-col  :span="3" class="box">
-            <div  class="img img3"></div>
+            <div  class="img img3" @click="order"></div>
             <div class="na">个人订单</div>
         </el-col>
         <el-col  :span="3" class="box">
-            <div  class="img img4"></div>
+            <div  class="img img4" @click="message"></div>
             <div class="na">站内信息</div>
         </el-col>
       </el-row>
@@ -49,12 +49,23 @@
   export default {
     data(){
       return{
-        img:[
-          {
-            imgurl: required('/static/usericon1.png')
-          }
-        ],
+
       }
+    },
+    methods: {
+
+      info(){
+        this.$router.push('/userinfo');
+      },
+      chginfo(){
+        this.$router.push('/changeinfo');
+      },
+      order(){
+        this.$router.push('/order');
+      },
+      message(){
+        this.$router.push('/message');
+      },
     },
     computed: {
       username () {
@@ -98,12 +109,13 @@
       width: 200px;
       border:1px solid silver;
       border-radius:15px;
-      cursor: pointer;
+
     }
     .img{
       height: 128px;
       width: 128px;
       margin: 0 auto;
+      cursor: pointer;
     }
     .img1{
       background: url("/static/usericon1.png") no-repeat  center;

@@ -88,6 +88,9 @@
             if (res.data.code === 503) {
               this.$message.error('购物车已有该课程');
             }
+            if (res.data.code === 505) {
+              this.$message.error('已购买该课程');
+            }
           });
         }
       }
