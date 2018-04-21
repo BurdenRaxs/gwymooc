@@ -8,7 +8,7 @@
 <script>
   import api from './../public/api.js'
   import func from './../public/fuc.js'
-  import axios from 'axios'
+
   export default {
 
     data () {

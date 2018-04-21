@@ -7,11 +7,12 @@ import Login from '@/components/login'
 import Register from '@/components/register'
 import userCenter from '@/pages/usercenter'
 import shopCart from '@/pages/shopcart'
-import userInfo from '@/pages/userinfo'
+import userCourse from '@/pages/usercourse'
 import changeInfo from '@/pages/changeInfo'
 import order from '@/pages/order'
 import message from '@/pages/message'
 import pay from '@/pages/pay'
+import Watch from '@/pages/watch'
 
 Vue.use(Router)
 
@@ -36,6 +37,11 @@ export default new Router({
       component: Course
     },
     {
+      path:'/watch/:id',
+      name: 'Watch',
+      component: Watch
+    },
+    {
       path:'/login',
       name: 'Login',
       component: Login
@@ -56,9 +62,9 @@ export default new Router({
       component: shopCart
     },
     {
-      path:'/userinfo',
-      name: 'userInfo',
-      component: userInfo
+      path:'/usercourse',
+      name: 'userCourse',
+      component: userCourse
     },
     {
       path:'/changeinfo',

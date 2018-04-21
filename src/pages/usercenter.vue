@@ -44,7 +44,8 @@
 
 
 <script>
-
+  import api from './../public/api.js'
+  import func from './../public/fuc.js'
 
   export default {
     data(){
@@ -55,7 +56,7 @@
     methods: {
 
       info(){
-        this.$router.push('/userinfo');
+        this.$router.push('/usercourse');
       },
       chginfo(){
         this.$router.push('/changeinfo');

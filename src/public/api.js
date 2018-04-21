@@ -17,5 +17,7 @@ export default {
   getCart : host + '/getcart',
   delCart : host + '/delcart',
   pay : host + '/pay',
-
+  getUserCourse : host + '/getUserCourse',
+  getUserOrder : host + '/getUserOrder',
+  changePassword : host + '/changePassword',
 }
