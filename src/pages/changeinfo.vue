@@ -43,9 +43,14 @@
           newpassword: ''
         },
         changeRules: {
+          oldpassword:[{
+            required: true,
+            message: '请输入旧密码',
+            trigger: 'blur'
+          }],
           newpassword: [{
             required: true,
-            message: '请输入密码',
+            message: '请输入新密码',
             trigger: 'blur'
           }, {
             min: 6,
