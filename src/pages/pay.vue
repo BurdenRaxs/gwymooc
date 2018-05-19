@@ -12,6 +12,9 @@
 
         <div class="content">
           <h3>{{ cd.coursename }}</h3>
+          <div class="toleft">
+            <div>{{ cd.details }}</div>
+          </div>
         </div>
 
       </el-col>
@@ -82,18 +85,13 @@
     width: 100%;
     color: grey;
   }
-  .toright{
-    display: flex;
-    justify-content: flex-end;
-    padding-top: 10px;
-  }
-  .price{
-    text-align: center;
-    line-height: 40px;
-    margin-right: 10px;
-  }
+
   .row{
     margin-top: 10px;
+  }
+  .toleft{
+    display: flex;
+    justify-content: space-between;
   }
 
 </style>

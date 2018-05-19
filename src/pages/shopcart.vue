@@ -12,9 +12,14 @@
 
         <div class="content">
           <h3>{{ cd.coursename }}</h3>
-          <div class="toright">
-            <div class="price">{{ cd.price }}元</div>
-            <el-button type="danger" round @click="del(index,cd.courseid)">删除</el-button>
+          <div class="toleft">
+            <div>{{ cd.details }}</div>
+            <div class="toright">
+              <div class="price">{{ cd.price }}元</div>
+              <div>
+                <el-button type="danger" round @click="del(index,cd.courseid)">删除</el-button>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -90,10 +95,14 @@
     width: 100%;
     color: grey;
   }
+  .toleft{
+    display: flex;
+    justify-content: space-between;
+  }
   .toright{
     display: flex;
     justify-content: flex-end;
-    padding-top: 10px;
+    /*padding-top: 10px;*/
   }
   .price{
     text-align: center;

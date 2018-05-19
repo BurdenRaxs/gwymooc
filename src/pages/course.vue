@@ -6,7 +6,7 @@
         <span>{{ coursedata[0].coursename }}</span>
       </div>
       <div class="descr">
-        <span>{{ coursedata[0].describe }}</span>
+        <span>{{ coursedata[0].describes }}</span>
       </div>
       <div class="price">
         <span>价格：{{ coursedata[0].price }}元</span>

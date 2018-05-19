@@ -4,7 +4,6 @@
         <div id="logo"></div>
       </el-menu-item>
       <el-menu-item index="2">课程商城</el-menu-item>
-      <el-menu-item index="3">公务员问</el-menu-item>
       <el-menu-item index="4" class="login" v-if="logstate" >登录</el-menu-item>
       <el-menu-item index="5" class="login" v-if="logstate" >注册</el-menu-item>
       <el-submenu index="6" class="login" v-if="!logstate">

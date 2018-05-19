@@ -13,7 +13,8 @@
 
           <div class="content">
             <h3>{{ cd.coursename }}</h3>
-            <div class="toright">
+            <div class="toleft">
+              <div>{{ cd.details }}</div>
               <el-button type="danger" round @click="watch(cd.courseid)">点击观看</el-button>
             </div>
           </div>
@@ -77,6 +78,10 @@
   .content{
     width: 100%;
     color: grey;
+  }
+  .toleft{
+    display: flex;
+    justify-content: space-between;
   }
   .toright{
     display: flex;
