@@ -13,6 +13,7 @@ import order from '@/pages/order'
 import message from '@/pages/message'
 import pay from '@/pages/pay'
 import Watch from '@/pages/watch'
+import Eva from '@/pages/eva'
 
 Vue.use(Router)
 
@@ -85,6 +86,11 @@ export default new Router({
       path:'/pay',
       name: 'pay',
       component: pay
+    },
+    {
+      path:'/eva/:id',
+      name: 'eva',
+      component: Eva
     }
   ]
 })

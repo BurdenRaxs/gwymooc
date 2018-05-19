@@ -15,15 +15,16 @@
             <h3>{{ cd.coursename }}</h3>
             <div class="toleft">
               <div>{{ cd.details }}</div>
-              <el-button type="danger" round @click="watch(cd.courseid)">点击观看</el-button>
+              <div class="toright">
+                <el-button type="info" round @click="toeva(cd.courseid)">评价</el-button>
+                <el-button type="danger" round @click="watch(cd.courseid)">点击观看</el-button>
+              </div>
             </div>
           </div>
-
         </el-col>
       </el-row>
     </div>
   </div>
-
 </template>
 
 
@@ -47,6 +48,9 @@
       },
       watch(id){
         this.$router.push({name:'Watch',params:{id:id}})
+      },
+      toeva(id){
+        this.$router.push({name:'eva',params:{id:id}})
       }
     },
     mounted(){

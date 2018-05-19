@@ -20,4 +20,6 @@ export default {
   getUserCourse : host + '/getUserCourse',
   getUserOrder : host + '/getUserOrder',
   changePassword : host + '/changePassword',
+  getEvaluation : host + '/getEvaluation',
+  toEvaluation : host + '/toEvaluation',
 }
